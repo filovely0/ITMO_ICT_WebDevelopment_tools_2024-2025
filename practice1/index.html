@@ -414,7 +414,6 @@ def on_startup():
 from datetime import datetime
 from sqlmodel import SQLModel, Field, Relationship
 
-
 # ---------- USER ----------
 class User(SQLModel, table=True):
     user_id: Optional[int] = Field(default=None, primary_key=True)
