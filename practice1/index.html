@@ -250,39 +250,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Лабораторная работа 1">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Создание файла для бд
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      Создание базы данных с моделями
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      Запуск приложения
-    </span>
-  </a>
-  
 </li>
       
     </ul>
@@ -372,39 +339,6 @@
   <a href="#1" class="md-nav__link">
     <span class="md-ellipsis">
       Лабораторная работа 1
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Лабораторная работа 1">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      Создание файла для бд
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      Создание базы данных с моделями
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      Запуск приложения
     </span>
   </a>
   
@@ -591,42 +525,6 @@ class Exchange(SQLModel, table=True):
 
     request: &quot;ExchangeRequest&quot; = Relationship(back_populates=&quot;exchange&quot;)
 </code></pre>
-<h3 id="_2">Создание файла для бд</h3>
-<p><strong>код из файла db.py:</strong></p>
-<pre><code class="language-python">from sqlmodel import Session, SQLModel, create_engine
-import os
-from dotenv import load_dotenv
-
-load_dotenv()
-
-DATABASE_URL = os.getenv(&quot;DATABASE_URL&quot;)
-engine = create_engine(DATABASE_URL, echo=True)
-
-def get_session():
-    with Session(engine) as session:
-        yield session
-
-</code></pre>
-<p>Всю важную информацию храню в файле .env</p>
-<h3 id="_3">Создание базы данных с моделями</h3>
-<p><strong>код из файла create_db.py:</strong></p>
-<pre><code class="language-python">from models import SQLModel
-from db import engine
-
-def create_db_and_tables():
-    SQLModel.metadata.create_all(engine)
-
-if __name__ == &quot;__main__&quot;:
-    create_db_and_tables()
-
-</code></pre>
-<h2 id="_4">Запуск приложения</h2>
-<p>В командной строке ввожу uvicorn main:app --reload
-<img alt="" src="../images/upload.png" /></p>
-<p>по пути http://127.0.0.1:8000
-<img alt="" src="../images/check.png" />
-по пути http://127.0.0.1:8000/docs
-<img alt="" src="../images/docs.png" /></p>
 
 
 
