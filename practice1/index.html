@@ -396,32 +396,6 @@ def on_startup():
         description VARCHAR,
         PRIMARY KEY (id)
 )
-
-CREATE TABLE profession (
-        id SERIAL NOT NULL,
-        title VARCHAR NOT NULL,
-        description VARCHAR NOT NULL,
-        PRIMARY KEY (id)
-)
-
-CREATE TABLE warrior (
-        id SERIAL NOT NULL,
-        race racetype NOT NULL,
-        name VARCHAR NOT NULL,
-        level INTEGER NOT NULL,
-        profession_id INTEGER,
-        PRIMARY KEY (id),
-        FOREIGN KEY(profession_id) REFERENCES profession (id)
-)
-
-CREATE TABLE skillwarriorlink (
-        skill_id INTEGER NOT NULL,
-        warrior_id INTEGER NOT NULL,
-        PRIMARY KEY (skill_id, warrior_id),
-        FOREIGN KEY(skill_id) REFERENCES skill (id),
-        FOREIGN KEY(warrior_id) REFERENCES warrior (id)
-)
-
 </code></pre>
 <p><strong>Миграции, ENV, GitIgnore и структура проекта</strong></p>
 <p>Для интеграции Alembic в разрабатываемый проект необходимо его установить через пакетный менеджер: </p>
@@ -435,14 +409,7 @@ CREATE TABLE skillwarriorlink (
 <p><img alt="" src="../lr2/web.drawio%281%29.png" />
 Цели</p>
 <p>Научится реализовывать полноценное серверное приложение с помощью фреймворка FastAPI с применением дополнительных средств и библиотек.</p>
-<p><strong>Тема: Разработка веб-приложения для буккросинга.</strong></p>
-<p>Ваша задача - создать веб-приложение, которое позволит пользователям обмениваться книгами между собой. Это приложение должно облегчать процесс обмена книгами, позволяя пользователям находить книги, которые им интересны, и находить новых пользователей для обмена книгами. </p>
-<p><strong>Функционал веб-приложения должен включать следующее:</strong></p>
-<p><strong>Создание профилей</strong>: Возможность пользователям создавать профили, указывать информацию о себе, своих навыках, опыте работы и предпочтениях по проектам.</p>
-<p><strong>Добавление книг в библиотеку</strong>: Пользователи могут добавлять книги, которыми они готовы поделиться, в свою виртуальную библиотеку на платформе.</p>
-<p><strong>Поиск и запросы на обмен</strong>: Функционал поиска книг в библиотеке других пользователей. Возможность отправлять запросы на обмен книгами другим пользователям.</p>
-<p><strong>Управление запросами и обменами</strong>: Возможность просмотра и управления запросами на обмен. Возможность подтверждения или отклонения запросов на обмен.
-<strong>код из файла models.py:</strong></p>
+<p><strong>код из файла models.py:</strong></p>
 <pre><code class="language-python">from typing import Optional, List
 from datetime import datetime
 from sqlmodel import SQLModel, Field, Relationship
